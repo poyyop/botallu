@@ -10,7 +10,7 @@ client.on("message", function (message) {
 
 client.on("message", function (message) {
     if (message.content === "!commands") {
-        message.reply("!ping, !roll, !flip, !maps x, !inhouse namn namn");
+        message.reply("!ping,  !push, !roll, !flip, !maps x, !inhouse namn namn");
     }
     if (message.content === "Ping" || message.content === "!ping") {
         message.reply("Pong!");
@@ -29,6 +29,9 @@ client.on("message", function (message) {
 		if (x === 2) {
 			message.reply("Tails!");
 		}
+    }
+    if (message.content === "!push") {
+    	message.reply("TODO!");
     }
 });
 
