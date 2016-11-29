@@ -31,7 +31,7 @@ client.on("message", function (message) {
 		}
     }
     if (message.content === "!push") {
-    	message.reply("TODO!");
+    	message.reply("Push it like you push your girlfriend cirLewd");
     }
 });
 
@@ -120,7 +120,7 @@ function MsgToChannel(msg) {
 
 client.on("ready", () => {
     console.log("ready event handler");
-    MsgToChannel("Are those Redbulls only for the commercials, or can you actually drink them?");   	    	    
+    MsgToChannel("Are those Redbulls only for the commercials, or can you actually drink them? :thinking:");   	    	    
 })
 
 client.login("MjUzMDYxMDk4MjY4MzkzNDcz.Cx7BDw.g5-7vUBsgrL_lv1UtV8bpeeZZ60");
