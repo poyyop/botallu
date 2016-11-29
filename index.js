@@ -12,27 +12,15 @@ client.on("message", function (message) {
     if (message.content === "!commands") {
         message.reply("!ping, !roll, !flip, !maps x, !inhouse namn namn");
     }
-});
-
-client.on("message", function (message) {
     if (message.content === "Ping" || message.content === "!ping") {
         message.reply("Pong!");
     }
-});
-
-client.on("message", function (message) {
     if (message.content === "!sleep") {
         client.destroy();
     }
-});
-
-client.on("message", function (message) {
     if (message.content === "!roll") {
         message.reply(Math.floor((Math.random() * 100) + 1));
     }
-});
-
-client.on("message", function (message) {
     if (message.content === "!flip") {
 		 var x = Math.floor((Math.random() * 2) + 1);
         if (x === 1) {
