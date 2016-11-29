@@ -1,38 +1,38 @@
 var Discord = require("discord.js");
 
-var bot = new Discord.Client();
+var client = new Discord.Client();
 
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if (message.content.includes  ("253061098268393473")) {
         message.reply("Fuk u want m8?");
     }
 });
 
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if (message.content === "!commands") {
         message.reply("!ping, !roll, !flip, !maps x, !inhouse namn namn");
     }
 });
 
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if (message.content === "Ping" || message.content === "!ping") {
         message.reply("Pong!");
     }
 });
 
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if (message.content === "!sleep") {
-        bot.destroy();
+        client.destroy();
     }
 });
 
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if (message.content === "!roll") {
         message.reply(Math.floor((Math.random() * 100) + 1));
     }
 });
 
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if (message.content === "!flip") {
 		 var x = Math.floor((Math.random() * 2) + 1);
         if (x === 1) {
@@ -44,7 +44,7 @@ bot.on("message", function (message) {
     }
 });
 
-bot.on("presenceUpdate", function (oldMember, newMember) {
+client.on("presenceUpdate", function (oldMember, newMember) {
 if(newMember.presence.game !== null) {    
 	if (newMember.presence.game.streaming) {
 		MsgToChannel(newMember.presence.game.url);				
@@ -53,7 +53,7 @@ if(newMember.presence.game !== null) {
 });
 
 //Maps function
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if(message.content.startsWith("!maps"))
     {
         //Stuff
@@ -81,7 +81,7 @@ bot.on("message", function (message) {
 });
 
 //Create teams
-bot.on("message", function (message) {
+client.on("message", function (message) {
     if(message.content.startsWith("!inhouse"))
     {
         //Teams
@@ -118,7 +118,7 @@ function shuffleArray(a) {
 
 //Send message to channel
 function MsgToChannel(msg) {
-	var _channel = bot.channels.array();
+	var _channel = client.channels.array();
 	for (var i = _channel.length - 1; i >= 0; i--) {
 		if (_channel[i].id === "181823407397011456") {
 		   _channel[i].sendMessage(msg);	   	
@@ -127,9 +127,9 @@ function MsgToChannel(msg) {
 }
 
 
-bot.on("ready", () => {
+client.on("ready", () => {
     console.log("ready event handler");
     MsgToChannel("Are those Redbulls only for the commercials, or can you actually drink them?");   	    	    
 })
 
-bot.login("MjUzMDYxMDk4MjY4MzkzNDcz.Cx7BDw.g5-7vUBsgrL_lv1UtV8bpeeZZ60");
+client.login("MjUzMDYxMDk4MjY4MzkzNDcz.Cx7BDw.g5-7vUBsgrL_lv1UtV8bpeeZZ60");
