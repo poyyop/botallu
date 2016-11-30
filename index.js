@@ -119,6 +119,16 @@ function MsgToChannel(msg) {
 	    }		
 }
 
+//Send message to channel
+function TtsToChannel(msg) {
+	var _channel = client.channels.array();
+	for (var i = _channel.length - 1; i >= 0; i--) {
+		if (_channel[i].id === "181823407397011456") {
+		   _channel[i].sendTTSMessage(msg);	   	
+		   }	   
+	    }		
+}
+
 
 client.on("ready", () => {
     console.log("ready event handler");
