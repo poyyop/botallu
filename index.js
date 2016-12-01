@@ -6,7 +6,22 @@ var client = new Discord.Client();
 
 client.on("message", function (message) {
     if (message.content.includes  ("253061098268393473")) {
-        message.reply("Fuk u want m8?");
+    	var randomMsg = Math.floor((Math.random() * 5) + 1)
+    	if (randomMsg === 1) {
+    		message.reply("Fuk u want m8?");
+    	}
+    	if (randomMsg === 2) {
+    		message.reply("Hey bro, don't leave me hanging :frowning:");
+    	}
+    	if (randomMsg === 3) {
+    		message.reply("No");
+    	}
+    	if (randomMsg === 4) {
+    		message.reply("Yes");
+    	}
+    	if (randomMsg === 5) {
+    		message.reply("Shut up");
+    	}    	    	    	    	        
     }
 });
 
