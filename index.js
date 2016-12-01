@@ -4,7 +4,24 @@ var Discord = require("discord.js");
 
 var client = new Discord.Client();
 
+var fs = require("fs");
+var path = "C:\\Users\\Martin\\node_modules\\generator-discordbot\\generators\\app\\templates\\Bot\\botallu\\highlights.txt";
+
+
 client.on("message", function (message) {
+	//Save highlight links   to textfile
+	if (message.content.startsWith ("https://clips.twitch.tv" || "https://oddshot.tv")) {
+		var data = message.content +  " , ";
+		fs.appendFile(path, data, function(error) {
+    		if (error) {
+    			console.error("write error:  " + error.message);
+     		} 
+     		else {
+       			console.log("Successful Append to " + path);
+     		}
+		});				
+	}
+
 	//@allu response 
     if (message.content.includes ("253061098268393473")) {
     	var randomReply;
@@ -41,16 +58,28 @@ client.on("message", function (message) {
         message.reply(Math.floor((Math.random() * 100) + 1));
     }
     if (message.content === "!flip") {
-		var x = Math.floor((Math.random() * 2) + 1);
-        if (x === 1) {
-			message.reply("Heads!");
-		}
-		if (x === 2) {
-			message.reply("Tails!");
+		switch (Math.floor((Math.random() * 2) + 1)) {
+			case 1: 
+				message.reply("Heads!");
+				break;
+			case 2: 
+				message.reply("Tails!");
+				break;	
 		}
     }
     if (message.content === "!push") {
     	message.reply("Push it like you push your girlfriend cirLewd");
+    }
+    //Read highlights.txt and reply content
+    if (message.content === "!highlights") {
+    	fs.readFile(path, function (error, data) {
+    		if (error) {
+    			console.error("write error:  " + error.message);
+     		} 
+     		else {
+       			message.reply(data);
+     		}
+    	});
     }
 
 //Maps function
