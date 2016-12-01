@@ -5,27 +5,29 @@ var Discord = require("discord.js");
 var client = new Discord.Client();
 
 client.on("message", function (message) {
-    if (message.content.includes  ("253061098268393473")) {
-    	var randomMsg = Math.floor((Math.random() * 5) + 1)
-    	if (randomMsg === 1) {
-    		message.reply("Fuk u want m8?");
+	//@allu response 
+    if (message.content.includes ("253061098268393473")) {
+    	var randomReply;
+    	switch (Math.floor((Math.random() * 5) + 1)) {
+    		case 1: 
+    			randomReply = "Fuk u want m8?";
+    			break;
+    		case 2: 
+    			randomReply = "Hey bro, don't leave me hanging :frowning:";
+    			break; 
+    		case 3: 
+    			randomReply = "No";
+    			break;
+    		case 4: 
+    			randomReply = "Yes";
+    			break;
+    		case 5: 
+    			randomReply = "Shut up";
+    			break;    			    			    			   			
     	}
-    	if (randomMsg === 2) {
-    		message.reply("Hey bro, don't leave me hanging :frowning:");
-    	}
-    	if (randomMsg === 3) {
-    		message.reply("No");
-    	}
-    	if (randomMsg === 4) {
-    		message.reply("Yes");
-    	}
-    	if (randomMsg === 5) {
-    		message.reply("Shut up");
-    	}    	    	    	    	        
+    	message.reply(randomReply);
     }
-});
-
-client.on("message", function (message) {
+    //commands
     if (message.content === "!commands") {
         message.reply("!ping,  !push, !roll, !flip, !maps x, !inhouse namn namn");
     }
@@ -39,7 +41,7 @@ client.on("message", function (message) {
         message.reply(Math.floor((Math.random() * 100) + 1));
     }
     if (message.content === "!flip") {
-		 var x = Math.floor((Math.random() * 2) + 1);
+		var x = Math.floor((Math.random() * 2) + 1);
         if (x === 1) {
 			message.reply("Heads!");
 		}
@@ -50,18 +52,8 @@ client.on("message", function (message) {
     if (message.content === "!push") {
     	message.reply("Push it like you push your girlfriend cirLewd");
     }
-});
-
-client.on("presenceUpdate", function (oldMember, newMember) {
-if(newMember.presence.game !== null) {    
-	if (newMember.presence.game.streaming) {
-		MsgToChannel(newMember.presence.game.url);				
-	}
-}	
-});
 
 //Maps function
-client.on("message", function (message) {
     if(message.content.startsWith("!maps"))
     {
         //Stuff
@@ -85,11 +77,9 @@ client.on("message", function (message) {
             new_map_pool = new_map_pool + cs_maps[i] + " ";
         }
         message.reply(new_map_pool);
-    }
-});
+    }   
 
 //Create teams
-client.on("message", function (message) {
     if(message.content.startsWith("!inhouse"))
     {
         //Teams
@@ -109,7 +99,15 @@ client.on("message", function (message) {
                 team_b.push(player_array[i]);
         }
         message.reply("LAG 1: " + team_a.join(" ") + ", LAG 2: " + team_b.join(" "));
-    }
+    }      	 	    	    	    	        
+});
+
+client.on("presenceUpdate", function (oldMember, newMember) {
+if(newMember.presence.game !== null) {    
+	if (newMember.presence.game.streaming) {
+		MsgToChannel(newMember.presence.game.url);				
+	}
+}	
 });
 
 
