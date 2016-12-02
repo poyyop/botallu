@@ -9,9 +9,16 @@ var path = "C:\\Users\\Martin\\node_modules\\generator-discordbot\\generators\\a
 
 
 client.on("message", function (message) {
-	//Save highlight links   to textfile
-	if (message.content.startsWith ("https://clips.twitch.tv" || "https://oddshot.tv")) {
-		var data = message.content +  " , ";
+	//Save twitch highlight links to textfile
+	if (message.content.startsWith ("https://clips.twitch.tv")) {
+		var str = message.content;
+		var data = "";
+		//Search for twitch.tv
+		var re = new RegExp("(http|https)://clips.twitch.tv/[A-Za-z0-9_]+/[A-Za-z]+", "g");
+		var myArray = str.match(re);
+		for (var i=0; i<myArray.length; i++) {
+			data = data + myArray[i] + " , ";
+		}		
 		fs.appendFile(path, data, function(error) {
     		if (error) {
     			console.error("write error:  " + error.message);
@@ -21,6 +28,25 @@ client.on("message", function (message) {
      		}
 		});				
 	}
+	//Save Oddshot highlight link to textfile
+	if (message.content.startsWith ("https://oddshot.tv")) {
+		var str = message.content;
+		var data = "";
+		//match oddshot string
+		var re = new RegExp("(http|https)://oddshot.tv/shot/[A-Za-z0-9_]+", "g");
+		var myArray = str.match(re);
+		for (var i=0; i<myArray.length; i++) {
+			data = data + myArray[i] + " , ";
+		}		
+		fs.appendFile(path, data, function(error) {
+    		if (error) {
+    			console.error("write error:  " + error.message);
+     		} 
+     		else {
+       			console.log("Successful Append to " + path);
+     		}
+		});				
+	}	
 
 	//@allu response 
     if (message.content.includes ("253061098268393473")) {
@@ -46,7 +72,7 @@ client.on("message", function (message) {
     }
     //commands
     if (message.content === "!commands") {
-        message.reply("!ping,  !push, !roll, !flip, !maps x, !inhouse namn namn");
+        message.reply("!ping, !highlights, !push, !roll, !flip, !maps x, !inhouse namn namn");
     }
     if (message.content === "Ping" || message.content === "!ping") {
         message.reply("Pong!");
@@ -88,11 +114,11 @@ client.on("message", function (message) {
         //Stuff
         var inputen = message.content;
         var new_map_pool = "Maps: ";
-        var cs_maps = ["Dust 2", "Inferno", "Nuke", "Train", "Cache", "Cobblestone", "Overpass"];
+        var cs_maps = ["Dust 2", "Inferno", "Nuke", "Train", "Cache", "Cobblestone", "Overpass", "Mirage"];
         var no_of_maps = cs_maps.length;
 
         //New number of maps?
-        var correct_command = inputen.match(/^!maps[ ]?[1-7]?$/);
+        var correct_command = inputen.match(/^!maps[ ]?[1-8]?$/);
         if(correct_command && inputen.length > 5) {
             new_map_count = inputen.replace("!maps ", "")
             if(new_map_count > 0 && new_map_count <= cs_maps.length) {
