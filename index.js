@@ -10,7 +10,7 @@ var path = "C:\\Users\\Martin\\node_modules\\generator-discordbot\\generators\\a
 
 client.on("message", function (message) {
 	//Save twitch highlight links to textfile
-	if (message.content.startsWith ("https://clips.twitch.tv")) {
+	if (message.content.includes ("https://clips.twitch.tv")) {
 		var str = message.content;
 		var data = "";
 		//Search for twitch.tv
@@ -29,7 +29,7 @@ client.on("message", function (message) {
 		});				
 	}
 	//Save Oddshot highlight link to textfile
-	if (message.content.startsWith ("https://oddshot.tv")) {
+	if (message.content.includes ("https://oddshot.tv")) {
 		var str = message.content;
 		var data = "";
 		//match oddshot string
