@@ -51,7 +51,7 @@ client.on("message", function (message) {
 	//@allu response 
     if (message.content.includes ("253061098268393473")) {
     	var randomReply;
-    	switch (Math.floor((Math.random() * 5) + 1)) {
+    	switch (Math.floor((Math.random() * 6) + 1)) {
     		case 1: 
     			randomReply = "Fuk u want m8?";
     			break;
@@ -66,7 +66,9 @@ client.on("message", function (message) {
     			break;
     		case 5: 
     			randomReply = "Shut up";
-    			break;    			    			    			   			
+    			break; 
+    		case 6: 
+    			randomReply = "suck on these https://pbs.twimg.com/media/Bjfn9l8CcAEyvJC.jpg";   			    			    			   			
     	}
     	message.reply(randomReply);
     }
@@ -77,6 +79,10 @@ client.on("message", function (message) {
     if (message.content === "Ping" || message.content === "!ping") {
         message.reply("Pong!");
     }
+    if (message.content === "!test") {
+        //client.sendMessage(message.author, "Hello!");
+        console.log(message.author);
+    }    
     if (message.content === "!sleep") {
         client.destroy();
     }
@@ -103,7 +109,13 @@ client.on("message", function (message) {
     			console.error("write error:  " + error.message);
      		} 
      		else {
-       			message.reply(data);
+     			message.reply(data);       			
+       			// try {
+       			// 	ETTJÄVLAPM.sendMessage(data);
+       			// }  
+       			// catch(err)  {
+       			// 	console.log(err)
+       			// }   			
      		}
     	});
     }
