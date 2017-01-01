@@ -108,14 +108,22 @@ client.on("message", function (message) {
     		if (error) {
     			console.error("write error:  " + error.message);
      		} 
-     		else {
-     			message.reply(data);       			
-       			// try {
-       			// 	ETTJÄVLAPM.sendMessage(data);
-       			// }  
-       			// catch(err)  {
-       			// 	console.log(err)
-       			// }   			
+     		else {       			
+       			try {
+       				var test = data + '';
+       				var dataArray = test.split(",");
+       				var returnString = "";
+       				var j = dataArray.length -1;
+       				for (i = 0; i < 6; i++) 
+       				{
+       					returnString = returnString + dataArray[j] + " ";
+       					j--
+					}
+					message.reply(returnString);       				     				       				
+       			}  
+       			catch(err)  {
+       				console.log(err)
+       			}   			
      		}
     	});
     }
